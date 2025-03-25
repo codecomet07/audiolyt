@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import numpy as np
 import tensorflow as tf
-import librosa
 import os
 import requests
 from utils.feature_extractor import extract_features
