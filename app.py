@@ -46,5 +46,22 @@ def predict():
 
     return jsonify({'error': 'Could not process the audio'}), 500
 
+@app.route('/echo', methods=['POST'])
+def echo_string():
+    # Check if the request has JSON data
+    if not request.is_json:
+        return jsonify({"error": "Request must be JSON"}), 400
+    
+    # Get the string from the JSON data
+    data = request.get_json()
+    
+    # Check if 'input_string' is in the JSON
+    if 'input_string' not in data:
+        return jsonify({"error": "No 'input_string' provided"}), 400
+    
+    # Return the input string
+    return jsonify({"result": data['input_string']})
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=10000)
